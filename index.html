@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Gemini in Google Workspace &mdash; The Complete Guide</title>
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-200">
+    <!-- Sticky Navigation Bar -->
+    <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/85 dark:bg-slate-900/85 border-b border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="p-2 rounded-xl bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 text-white shadow-sm">
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <span class="text-base font-bold tracking-tight gemini-gradient-text">Gemini in Workspace</span>
+            <span class="hidden sm:inline-block text-xs text-slate-400 dark:text-slate-500 ml-2">Enterprise Field Guide</span>
+          </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="relative max-w-xs w-full hidden md:block">
+          <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+          <input
+            id="search-input"
+            type="search"
+            placeholder="Search prompts, apps, tricks..."
+            class="w-full pl-9 pr-4 py-1.5 text-xs rounded-full bg-slate-100 dark:bg-slate-800/80 border border-transparent focus:border-purple-500 focus:bg-white dark:focus:bg-slate-900 focus:outline-none transition-all"
+          />
+        </div>
+
+        <!-- Controls -->
+        <div class="flex items-center gap-3">
+          <button
+            id="theme-toggle"
+            aria-label="Toggle theme"
+            class="p-2 rounded-lg text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          >
+            <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+            <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+          </button>
+          <a
+            href="https://github.com/DavidTrammer/gemini-workspace-guide"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 dark:bg-purple-600 dark:hover:bg-purple-500 rounded-lg shadow-sm transition-all"
+          >
+            <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+            <span>GitHub Repo</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+      <!-- Hero Section -->
+      <section class="text-center space-y-5 max-w-4xl mx-auto pt-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-purple-500 animate-pulse"></i>
+          <span>Workspace Side Panel &bull; Multimodal Intelligence &bull; Zero Data Training</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight">
+          Mastering <span class="gemini-gradient-text">Google Gemini</span> Across Google Workspace
+        </h1>
+        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
+          From complex formulas in <strong>Sheets</strong> and thread summaries in <strong>Gmail</strong> to source-grounded Audio Overviews in <strong>NotebookLM</strong> &mdash; unlock enterprise-grade productivity.
+        </p>
+      </section>
+
+      <!-- Interactive Prompt Builder / Simulator -->
+      <section class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
+        <div class="flex items-center justify-between flex-wrap gap-4 border-b border-slate-100 dark:border-slate-800 pb-4">
+          <div class="flex items-center gap-3">
+            <div class="p-2 rounded-lg bg-purple-500/10 text-purple-500">
+              <i data-lucide="cpu" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h2 class="text-lg font-bold">Interactive Workspace Prompt Generator</h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Configure parameters to generate high-performing prompts formatted for Gemini side panels</p>
+            </div>
+          </div>
+          <span class="text-xs px-2.5 py-1 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-medium rounded-full border border-emerald-500/20">
+            Real-time Generator
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- App Picker -->
+          <div class="space-y-1.5">
+            <label class="text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Application</label>
+            <select id="gen-app" class="w-full text-xs p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-500">
+              <option value="sheets">Google Sheets (Tables & Formulas)</option>
+              <option value="gmail">Gmail (Drafts & Summaries)</option>
+              <option value="notebooklm">NotebookLM (Audio Overviews & Research)</option>
+              <option value="docs">Google Docs (Proposals & Content)</option>
+              <option value="slides">Google Slides (Outlines & Imagen 3)</option>
+              <option value="meet">Google Meet (Notes & Action Items)</option>
+            </select>
+          </div>
+
+          <!-- Goal Picker -->
+          <div class="space-y-1.5">
+            <label class="text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Objective / Goal</label>
+            <select id="gen-goal" class="w-full text-xs p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-500">
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+
+          <!-- Custom Subject / Topic -->
+          <div class="space-y-1.5">
+            <label class="text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Project / Topic</label>
+            <input
+              id="gen-topic"
+              type="text"
+              value="Q4 Cloud Infrastructure Budget & Optimization"
+              class="w-full text-xs p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
+
+          <!-- Tone Picker -->
+          <div class="space-y-1.5">
+            <label class="text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Tone & Style</label>
+            <select id="gen-tone" class="w-full text-xs p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-500">
+              <option value="executive and concise">Executive & Concise</option>
+              <option value="diplomatic and persuasive">Diplomatic & Persuasive</option>
+              <option value="technical and detailed">Technical & Detailed</option>
+              <option value="friendly and approachable">Friendly & Approachable</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Generated Output Box -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-purple-400"></i>
+              Tailored Prompt Ready for Gemini Side Panel
+            </span>
+            <button
+              id="copy-generated-prompt"
+              class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-white bg-purple-600 hover:bg-purple-500 rounded-lg shadow-sm transition-all"
+            >
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span>Copy Generated Prompt</span>
+            </button>
+          </div>
+          <div class="code-container p-4 rounded-xl bg-slate-900 border border-slate-800 font-mono text-xs text-purple-200 leading-relaxed break-words">
+            <code id="gen-output"></code>
+          </div>
+        </div>
+      </section>
+
+      <!-- App Filter Tabs -->
+      <section class="space-y-6">
+        <div class="flex items-center justify-between flex-wrap gap-4">
+          <div>
+            <h2 class="text-2xl font-bold tracking-tight">Applications & Deep-Dive Playbooks</h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Select an app to view specific prompts, workflows, and best practices</p>
+          </div>
+          
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <button class="app-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-purple-600 text-white shadow-md transition-all" data-app="all">All Apps</button>
+            <button class="app-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-purple-500/10 transition-all" data-app="sheets">Sheets</button>
+            <button class="app-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-purple-500/10 transition-all" data-app="gmail">Gmail</button>
+            <button class="app-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-purple-500/10 transition-all" data-app="notebooklm">NotebookLM</button>
+            <button class="app-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-purple-500/10 transition-all" data-app="docs">Docs</button>
+            <button class="app-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-purple-500/10 transition-all" data-app="slides">Slides</button>
+            <button class="app-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-purple-500/10 transition-all" data-app="meet">Meet</button>
+            <button class="app-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-purple-500/10 transition-all" data-app="drive">Drive</button>
+            <button class="app-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-purple-500/10 transition-all" data-app="vids">Vids</button>
+          </div>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- 1. Google Sheets -->
+          <div class="app-guide-card app-card p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4" data-app="sheets">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-500">
+                  <i data-lucide="table" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h3 class="text-base font-bold">Google Sheets</h3>
+                  <span class="text-xs text-slate-500 dark:text-slate-400">Help me organize & Formulas</span>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 text-[10px] font-semibold bg-emerald-500/10 text-emerald-500 rounded-full">Core</span>
+            </div>
+
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Generate structured tables, complex nested formulas (<code class="text-purple-400">QUERY</code>, <code class="text-purple-400">XLOOKUP</code>), and categorize qualitative data effortlessly.
+            </p>
+
+            <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+              <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Key Capabilities</div>
+              <ul class="text-xs space-y-1.5 text-slate-600 dark:text-slate-300">
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5"></i>
+                  <span><strong>"Help me organize":</strong> Generates custom tables with sample data.</span>
+                </li>
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5"></i>
+                  <span><strong>Formula Generator:</strong> Translates natural language into multi-condition formulas.</span>
+                </li>
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5"></i>
+                  <span><strong>Apps Script Automation:</strong> Write Google Apps Scripts directly in the side panel.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pt-3">
+              <div class="text-[11px] font-semibold text-slate-400 mb-1.5">Featured Prompt:</div>
+              <div class="code-container p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-[11px] font-mono text-emerald-300 relative">
+                <code>Create a table to track customer renewals for Q4. Include Account Name, ARR, Contract End Date, Health Score (Green/Yellow/Red), and a calculated column for Renewal Likelihood %.</code>
+                <button class="copy-trigger absolute top-2 right-2 p-1 text-slate-400 hover:text-white" title="Copy prompt">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Gmail -->
+          <div class="app-guide-card app-card p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4" data-app="gmail">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-xl bg-red-500/10 text-red-500">
+                  <i data-lucide="mail" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h3 class="text-base font-bold">Gmail</h3>
+                  <span class="text-xs text-slate-500 dark:text-slate-400">Drafting & Thread Summaries</span>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 text-[10px] font-semibold bg-red-500/10 text-red-500 rounded-full">Core</span>
+            </div>
+
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Cut through inbox clutter. Summarize 30-reply threads in seconds and craft context-aware drafts using "Help me write".
+            </p>
+
+            <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+              <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Key Capabilities</div>
+              <ul class="text-xs space-y-1.5 text-slate-600 dark:text-slate-300">
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-red-500 shrink-0 mt-0.5"></i>
+                  <span><strong>Thread Summarization:</strong> Instant bullet points with action items on web & mobile.</span>
+                </li>
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-red-500 shrink-0 mt-0.5"></i>
+                  <span><strong>Tone Polish:</strong> Shift instantly between Formalize, Elaborate, and Shorten.</span>
+                </li>
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-red-500 shrink-0 mt-0.5"></i>
+                  <span><strong>Side Panel Cross-Check:</strong> Reference emails against files in Drive simultaneously.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pt-3">
+              <div class="text-[11px] font-semibold text-slate-400 mb-1.5">Featured Prompt:</div>
+              <div class="code-container p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-[11px] font-mono text-red-300 relative">
+                <code>Draft a warm but firm email to follow up on outstanding invoice #INV-4029. Emphasize that services remain active, specify bank wire details, and ask for payment confirmation by Friday.</code>
+                <button class="copy-trigger absolute top-2 right-2 p-1 text-slate-400 hover:text-white" title="Copy prompt">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. NotebookLM -->
+          <div class="app-guide-card app-card p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4" data-app="notebooklm">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-xl bg-purple-500/10 text-purple-500">
+                  <i data-lucide="book-open" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h3 class="text-base font-bold">NotebookLM</h3>
+                  <span class="text-xs text-slate-500 dark:text-slate-400">Source-Grounded AI Research</span>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 text-[10px] font-semibold bg-purple-500/10 text-purple-500 rounded-full">Advanced</span>
+            </div>
+
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Google's personalized AI collaborator. Upload PDFs, Docs, web links, and YouTube videos for 100% source-grounded answers.
+            </p>
+
+            <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+              <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Key Capabilities</div>
+              <ul class="text-xs space-y-1.5 text-slate-600 dark:text-slate-300">
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-purple-500 shrink-0 mt-0.5"></i>
+                  <span><strong>Audio Overviews:</strong> Converts complex source material into a lively 2-host podcast.</span>
+                </li>
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-purple-500 shrink-0 mt-0.5"></i>
+                  <span><strong>Direct Citations:</strong> Every single answer links directly to exact source passages.</span>
+                </li>
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-purple-500 shrink-0 mt-0.5"></i>
+                  <span><strong>Auto Guides:</strong> 1-click generation of Study Guides, Briefing Docs, and FAQs.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pt-3">
+              <div class="text-[11px] font-semibold text-slate-400 mb-1.5">Featured Prompt:</div>
+              <div class="code-container p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-[11px] font-mono text-purple-300 relative">
+                <code>Based strictly on the uploaded market research reports, summarize how competitors are pricing enterprise tiers. Provide citations for each competitor and highlight any recurring discounts.</code>
+                <button class="copy-trigger absolute top-2 right-2 p-1 text-slate-400 hover:text-white" title="Copy prompt">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Google Docs -->
+          <div class="app-guide-card app-card p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4" data-app="docs">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-xl bg-blue-500/10 text-blue-500">
+                  <i data-lucide="file-text" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h3 class="text-base font-bold">Google Docs</h3>
+                  <span class="text-xs text-slate-500 dark:text-slate-400">Content Creation & Smart Canvas</span>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 text-[10px] font-semibold bg-blue-500/10 text-blue-500 rounded-full">Core</span>
+            </div>
+
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Overcome the blank page. Draft structured whitepapers, press releases, client proposals, and summaries with inline AI.
+            </p>
+
+            <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+              <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Key Capabilities</div>
+              <ul class="text-xs space-y-1.5 text-slate-600 dark:text-slate-300">
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-blue-500 shrink-0 mt-0.5"></i>
+                  <span><strong>"Help me write" Bubble:</strong> Trigger with Cmd/Ctrl + \ anywhere in the document.</span>
+                </li>
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-blue-500 shrink-0 mt-0.5"></i>
+                  <span><strong>Smart Chips &amp; Canvas:</strong> Embed dropdowns, task lists, and @-mentions automatically.</span>
+                </li>
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-blue-500 shrink-0 mt-0.5"></i>
+                  <span><strong>Full Document Refactor:</strong> Change point of view, reformat as executive summary.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pt-3">
+              <div class="text-[11px] font-semibold text-slate-400 mb-1.5">Featured Prompt:</div>
+              <div class="code-container p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-[11px] font-mono text-blue-300 relative">
+                <code>Write an executive summary of this 40-page strategy report. Organize into: 1. Core Thesis, 2. Financial Trajectory, 3. Critical Risks, and 4. Immediate 30-60-90 Day Actions.</code>
+                <button class="copy-trigger absolute top-2 right-2 p-1 text-slate-400 hover:text-white" title="Copy prompt">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Google Slides -->
+          <div class="app-guide-card app-card p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4" data-app="slides">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-xl bg-amber-500/10 text-amber-500">
+                  <i data-lucide="presentation" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h3 class="text-base font-bold">Google Slides</h3>
+                  <span class="text-xs text-slate-500 dark:text-slate-400">Imagen 3 &amp; Presentation Outlines</span>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 text-[10px] font-semibold bg-amber-500/10 text-amber-500 rounded-full">Visual</span>
+            </div>
+
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Generate custom visuals on demand using Imagen 3 directly inside Slides, build full presentation decks, and create speaker notes.
+            </p>
+
+            <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+              <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Key Capabilities</div>
+              <ul class="text-xs space-y-1.5 text-slate-600 dark:text-slate-300">
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5"></i>
+                  <span><strong>Imagen 3 Text-to-Image:</strong> Create bespoke hero illustrations with artistic style controls.</span>
+                </li>
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5"></i>
+                  <span><strong>Speaker Notes Generator:</strong> Synthesizes talking points for each slide.</span>
+                </li>
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5"></i>
+                  <span><strong>Deck Structuring:</strong> Builds logical progression from problem to solution.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pt-3">
+              <div class="text-[11px] font-semibold text-slate-400 mb-1.5">Featured Prompt:</div>
+              <div class="code-container p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-[11px] font-mono text-amber-300 relative">
+                <code>A high-tech cloud network visualization showing interconnected fiber cables with glowing nodes, photorealistic, cinematic volumetric lighting, 8k resolution, minimalist dark aesthetic.</code>
+                <button class="copy-trigger absolute top-2 right-2 p-1 text-slate-400 hover:text-white" title="Copy prompt">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. Google Meet -->
+          <div class="app-guide-card app-card p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4" data-app="meet">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-xl bg-teal-500/10 text-teal-500">
+                  <i data-lucide="video" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h3 class="text-base font-bold">Google Meet</h3>
+                  <span class="text-xs text-slate-500 dark:text-slate-400">Take Notes For Me &amp; Studio</span>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 text-[10px] font-semibold bg-teal-500/10 text-teal-500 rounded-full">Meetings</span>
+            </div>
+
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Focus entirely on conversation. Gemini logs notes in a Google Doc, captures action items, and enhances audio and visual quality.
+            </p>
+
+            <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+              <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Key Capabilities</div>
+              <ul class="text-xs space-y-1.5 text-slate-600 dark:text-slate-300">
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-teal-500 shrink-0 mt-0.5"></i>
+                  <span><strong>"Take notes for me":</strong> Automatically documents decisions & creates action item table.</span>
+                </li>
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-teal-500 shrink-0 mt-0.5"></i>
+                  <span><strong>Translated Captions:</strong> Real-time translation across 60+ language pairs.</span>
+                </li>
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-teal-500 shrink-0 mt-0.5"></i>
+                  <span><strong>Studio Look &amp; Sound:</strong> AI portrait lighting correction and audio noise isolation.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pt-3">
+              <div class="text-[11px] font-semibold text-slate-400 mb-1.5">Pro Tip:</div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 italic">
+                Enable "Take notes for me" in calendar invites to automatically deliver the summary doc to all attendees post-call.
+              </p>
+            </div>
+          </div>
+
+          <!-- 7. Google Drive -->
+          <div class="app-guide-card app-card p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4" data-app="drive">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-500">
+                  <i data-lucide="folder-sync" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h3 class="text-base font-bold">Google Drive</h3>
+                  <span class="text-xs text-slate-500 dark:text-slate-400">Semantic Multi-Doc Q&amp;A</span>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 text-[10px] font-semibold bg-cyan-500/10 text-cyan-500 rounded-full">Knowledge</span>
+            </div>
+
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Ask Gemini questions across multiple files simultaneously without opening them individually.
+            </p>
+
+            <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+              <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Key Capabilities</div>
+              <ul class="text-xs space-y-1.5 text-slate-600 dark:text-slate-300">
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-cyan-500 shrink-0 mt-0.5"></i>
+                  <span><strong>Cross-file Synthesis:</strong> Compare terms across 5 different customer agreements.</span>
+                </li>
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-cyan-500 shrink-0 mt-0.5"></i>
+                  <span><strong>Concept Search:</strong> Find relevant files even if exact keywords aren't present.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pt-3">
+              <div class="text-[11px] font-semibold text-slate-400 mb-1.5">Featured Prompt:</div>
+              <div class="code-container p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-[11px] font-mono text-cyan-300 relative">
+                <code>Find all agreements signed in 2025 containing an auto-renewal clause and generate a comparison table of termination notice periods.</code>
+                <button class="copy-trigger absolute top-2 right-2 p-1 text-slate-400 hover:text-white" title="Copy prompt">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8. Google Vids -->
+          <div class="app-guide-card app-card p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4" data-app="vids">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-xl bg-violet-500/10 text-violet-500">
+                  <i data-lucide="clapperboard" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h3 class="text-base font-bold">Google Vids</h3>
+                  <span class="text-xs text-slate-500 dark:text-slate-400">AI Workplace Video Creation</span>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 text-[10px] font-semibold bg-violet-500/10 text-violet-500 rounded-full">New</span>
+            </div>
+
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Google's AI-powered video app for work. Turn prompt or documents into professional product walkthroughs, training, and pitches.
+            </p>
+
+            <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+              <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Key Capabilities</div>
+              <ul class="text-xs space-y-1.5 text-slate-600 dark:text-slate-300">
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-violet-500 shrink-0 mt-0.5"></i>
+                  <span><strong>AI Storyboard:</strong> Generates initial scene outlines, script, and music suggestions.</span>
+                </li>
+                <li class="flex items-start gap-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-violet-500 shrink-0 mt-0.5"></i>
+                  <span><strong>Studio Recording:</strong> Built-in teleprompter and high-quality synthetic voiceovers.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pt-3">
+              <div class="text-[11px] font-semibold text-slate-400 mb-1.5">Featured Prompt:</div>
+              <div class="code-container p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-[11px] font-mono text-violet-300 relative">
+                <code>Create a 2-minute customer onboarding video storyboard welcoming new users, highlighting the first 3 setup steps, and linking to support resources.</code>
+                <button class="copy-trigger absolute top-2 right-2 p-1 text-slate-400 hover:text-white" title="Copy prompt">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Enterprise Privacy & Security Guarantee -->
+      <section class="p-8 rounded-2xl bg-gradient-to-r from-purple-900/20 via-blue-900/20 to-slate-900/40 border border-purple-500/20 space-y-6">
+        <div class="flex items-center gap-3">
+          <div class="p-2.5 rounded-xl bg-purple-500/20 text-purple-400">
+            <i data-lucide="shield-check" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h2 class="text-xl font-bold">Enterprise Privacy &amp; Data Security Guarantee</h2>
+            <p class="text-xs text-slate-400">How Google Workspace protects your organization's confidential data</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2">
+          <div class="space-y-2 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+            <div class="font-bold text-sm text-purple-300">1. No Model Training</div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Your company data, emails, prompts, generated content, and documents are <strong>never used to train</strong> Google's underlying Gemini models without your explicit consent.
+            </p>
+          </div>
+
+          <div class="space-y-2 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+            <div class="font-bold text-sm text-purple-300">2. Complete Tenant Isolation</div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Data remains strictly within your organization's existing Google Workspace tenant perimeter, respecting all existing access controls and DLP policies.
+            </p>
+          </div>
+
+          <div class="space-y-2 p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+            <div class="font-bold text-sm text-purple-300">3. Compliance Certified</div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Complies with strict enterprise governance frameworks including SOC 1/2/3, ISO/IEC 27001, HIPAA compliance support, and EU GDPR requirements.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cloud Infrastructure & Pipeline Section -->
+      <section class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4">
+        <h2 class="text-lg font-bold flex items-center gap-2">
+          <i data-lucide="layers" class="w-5 h-5 text-purple-500"></i>
+          Cloud Hosting &amp; CI/CD Infrastructure
+        </h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs font-mono">
+            <thead class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-sans">
+              <tr>
+                <th class="p-3">Resource</th>
+                <th class="p-3">Naming Scheme</th>
+                <th class="p-3">Instance Name</th>
+                <th class="p-3">Tier / Location</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
+              <tr>
+                <td class="p-3 font-sans font-medium text-slate-900 dark:text-slate-100">Resource Group</td>
+                <td class="p-3 text-slate-400">&lt;name&gt;-rg</td>
+                <td class="p-3 text-purple-400">gemini-workspace-guide-rg</td>
+                <td class="p-3">West Europe</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-sans font-medium text-slate-900 dark:text-slate-100">Static Web App</td>
+                <td class="p-3 text-slate-400">stapp-&lt;name&gt;</td>
+                <td class="p-3 text-purple-400">stapp-gemini-workspace-guide</td>
+                <td class="p-3">Free SKU</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-sans font-medium text-slate-900 dark:text-slate-100">GitHub Repository</td>
+                <td class="p-3 text-slate-400">&lt;name&gt;</td>
+                <td class="p-3 text-purple-400">DavidTrammer/gemini-workspace-guide</td>
+                <td class="p-3">Public</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-sans font-medium text-slate-900 dark:text-slate-100">CI/CD Pipeline</td>
+                <td class="p-3 text-slate-400">GitHub Actions</td>
+                <td class="p-3 text-purple-400">.github/workflows/azure-static-web-apps.yml</td>
+                <td class="p-3">Automated push to main</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-20 border-t border-slate-200 dark:border-slate-800 py-8 text-center text-xs text-slate-500 dark:text-slate-400">
+      <p>Google Gemini in Google Workspace Field Guide &bull; Hosted on Azure Static Web Apps (Free Tier) &bull; Built with Vite &amp; Tailwind CSS</p>
+    </footer>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
